@@ -1,0 +1,169 @@
+/* styles.css - moved from templates/index.html */
+@import url('https://fonts.googleapis.com/css2?family=Bungee&display=swap');
+
+/* Ajuste global para evitar que padding aumente o tamanho dos elementos */
+* {
+    box-sizing: border-box;
+    margin: 0;
+    padding: 0;
+}
+
+body {
+    background: #000000;
+    color: white;
+    font-family: 'Segoe UI', Arial, sans-serif;
+    text-align: center;
+    padding: 20px;
+    width: 100%;
+    /* Permite scroll horizontal se o conteúdo for muito largo em telas minúsculas */
+    overflow-x: auto;
+    min-height: 100vh;
+    margin: 0 auto;
+    justify-content: center;
+    align-items: center;
+    display: flex;
+}
+
+h1 {
+    color: #60a5fa;
+    margin-bottom: 20px;
+    font-size: 1.8rem;
+}
+
+/* Container para garantir que nada ultrapasse o limite */
+.container {
+    width: 100%;
+    max-width: 600px;
+    margin: 0 auto;
+    justify-content: center;
+    align-items: center;
+}
+
+.container h1 {
+    font-size: 2.0rem;
+    margin-bottom: 30px;
+    font-family: "Bungee", sans-serif;
+    font-weight: 400;
+    font-style: normal;
+    color: #ffffff;
+    background-image: url("./pool.jpeg");
+    background-size: cover;
+    background-position: center;
+    -webkit-background-clip: text;
+    -webkit-text-fill-color: transparent;
+}
+
+input {
+    width: 100%;
+    /* Ocupa o máximo do container */
+    max-width: 400px;
+    padding: 12px;
+    border-radius: 8px;
+    border: 2px solid #efeff1;
+    background: #ffffff;
+    color: rgb(0, 0, 0);
+    outline: none;
+    margin-bottom: 10px;
+}
+
+input:focus {
+    border-color: #2563eb;
+}
+
+.btn-group {
+    display: flex;
+    flex-wrap: wrap;
+    /* Faz os botões pularem linha se não couberem */
+    justify-content: center;
+    gap: 10px;
+    margin-top: 10px;
+}
+
+button {
+    padding: 12px 24px;
+    background: #2563eb;
+    border: none;
+    color: white;
+    border-radius: 8px;
+    cursor: pointer;
+    font-weight: bold;
+    transition: background 0.3s;
+    /* Garante que o botão não encolha demais */
+    white-space: nowrap;
+}
+
+button:hover {
+    background: #1d4ed8;
+}
+
+img {
+    margin-top: 20px;
+    width: 100%;
+    max-width: 350px;
+    /* Limite de tamanho da thumbnail */
+    height: auto;
+    border-radius: 10px;
+    box-shadow: 0 4px 15px rgba(0, 0, 0, 0.5);
+}
+
+select {
+    padding: 10px;
+    margin-top: 15px;
+    border-radius: 6px;
+    background: #1e293b;
+    color: white;
+    border: 1px solid #334155;
+    width: 100%;
+    max-width: 200px;
+}
+
+#progressBox {
+    width: 100%;
+    max-width: 400px;
+    height: 25px;
+    background: #1e293b;
+    margin: 20px auto;
+    border-radius: 10px;
+    overflow: hidden;
+    display: none;
+    border: 1px solid #334155;
+}
+
+#progressBar {
+    height: 100%;
+    width: 0%;
+    background: #22c55e;
+    transition: width 0.3s;
+}
+
+.loading-text {
+    color: #60a5fa;
+    font-weight: bold;
+    margin: 20px 0;
+    animation: pulse 1.5s infinite;
+}
+
+@keyframes pulse {
+    0% {
+        opacity: 1;
+    }
+
+    50% {
+        opacity: 0.4;
+    }
+
+    100% {
+        opacity: 1;
+    }
+}
+
+#status {
+    margin-top: 10px;
+    font-weight: bold;
+    padding: 0 10px;
+}
+
+#percent {
+    font-size: 0.9rem;
+    margin-top: 5px;
+}
