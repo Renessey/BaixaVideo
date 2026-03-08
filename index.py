@@ -5,8 +5,7 @@ from flask import Flask, render_template, request, jsonify, send_file
 
 app = Flask(__name__)
 
-# Armazena o progresso (Nota: Em produção com múltiplos usuários, 
-# o ideal seria usar um banco de dados ou cache, mas para uso pessoal isso funciona)
+# Armazena o progresso do download
 download_progress = {"percent": 0}
 
 def hook(d):
@@ -76,6 +75,7 @@ def download():
 
     if tipo == "mp3":
         ydl_opts = {
+            "ffmpeg_location": "/usr/bin/ffmpeg",  # Localização forçada para Docker/Railway
             "format": "bestaudio/best",
             "outtmpl": os.path.join(temp_dir, "%(title)s.%(ext)s"),
             "progress_hooks": [hook],
@@ -90,6 +90,7 @@ def download():
         # Formato que garante vídeo + áudio juntos
         f_str = f"bestvideo[height<={res}][ext=mp4]+bestaudio[ext=m4a]/best[ext=mp4]/best"
         ydl_opts = {
+            "ffmpeg_location": "/usr/bin/ffmpeg",  # Localização forçada para Docker/Railway
             "format": f_str,
             "outtmpl": os.path.join(temp_dir, "%(title)s.%(ext)s"),
             "progress_hooks": [hook],
@@ -105,7 +106,6 @@ def download():
             if tipo == "mp3":
                 filename = os.path.splitext(filename)[0] + ".mp3"
             else:
-                # Garante a extensão mp4 após o merge
                 if not filename.endswith(".mp4"):
                     filename = os.path.splitext(filename)[0] + ".mp4"
 
